@@ -1,0 +1,21 @@
+######################
+# Custom keybindings #
+######################
+
+set $i3locker    $HOME/.config/i3/lock/i3lockfancy
+set $screenshots $HOME/Pictures/screenshots
+set $datepattern %d-%m-%Y_%H-%M-%S
+
+bindsym $mod+p                exec $i3locker
+
+bindsym Print                 exec --no-startup-id scrot       $screenshots/full-$datepattern.png
+bindsym --release $mod+Print  exec --no-startup-id scrot -s    $screenshots/selection-$datepattern.png
+bindsym $mod+Shift+Print      exec --no-startup-id scrot -u -b $screenshots/window-$datepattern.png
+
+bindsym XF86MonBrightnessUp   exec --no-startup-id xbacklight -inc 5
+bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5
+bindsym XF86AudioRaiseVolume  exec --no-startup-id amixer -q set Master 2dB+ unmute && killall -SIGUSR1 py3status
+bindsym XF86AudioLowerVolume  exec --no-startup-id amixer -q set Master 2dB- unmute && killall -SIGUSR1 py3status
+bindsym XF86AudioMute         exec --no-startup-id amixer -q set Master toggle &&  killall -SIGUSR1 py3status
+
+# vim:filetype=i3

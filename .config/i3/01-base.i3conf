@@ -1,0 +1,11 @@
+set $mod Mod4
+
+font pango:Hack Regular, Awesome 20
+
+floating_modifier $mod
+
+bindsym $mod+Return exec urxvt                                                                
+bindsym $mod+Shift+q kill
+bindsym $mod+d exec dmenu_run
+
+# vim:filetype=i3

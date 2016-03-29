@@ -1,0 +1,5 @@
+bar {
+  status_command py3status
+}
+
+# vim:filetype=i3
