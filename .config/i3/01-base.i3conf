@@ -1,11 +1,12 @@
 set $mod Mod4
 
-font pango:Hack Regular, Awesome 20
+font pango:Hack Regular 11
 
 floating_modifier $mod
 
 bindsym $mod+Return exec urxvt                                                                
 bindsym $mod+Shift+q kill
-bindsym $mod+d exec dmenu_run
+bindsym $mod+d exec rofi -show run
+bindsym $mod+w exec rofi -show window
 
 # vim:filetype=i3

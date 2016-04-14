@@ -1,0 +1,42 @@
+general {
+	output_format = "i3bar"
+	colors        = true
+	interval      = 1
+}
+
+order += "arch_updates"
+order += "sysdata cpu"
+order += "sysdata mem"
+order += "volume_status"
+order += "battery_level"
+order += "time"
+
+arch_updates {
+	cache_timeout = 300
+	include_aur   = 1
+	format        = "PKGS: {pacman}/{aur}"
+}
+
+sysdata cpu {
+	format = "CPU: {cpu_usage} %"
+}
+
+sysdata mem {
+	format = "MEM: {mem_used}/{mem_total} GB"
+}
+
+volume_status {
+	threshold_bad      = 0
+	threshold_degraded = 0
+}
+
+battery_level {
+	format         = "BAT: {icon} {time_remaining}"
+	hide_when_full = true
+	hide_seconds   = true
+}
+
+time {
+	format = "%a %d/%m/%Y %H:%M"
+}
+

@@ -1,5 +1,6 @@
 bar {
-  status_command py3status
+  font pango: Awesome 11
+  status_command py3status -c .config/i3/i3status/conf
 }
 
 # vim:filetype=i3

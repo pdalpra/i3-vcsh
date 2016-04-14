@@ -5,10 +5,12 @@
 set $ws1 "1: &#xf120;"
 set $ws2 "2: &#xf268;"
 set $ws3 "3: &#xf198;"
+set $ws4 "4: &#xf121;"
 
 exec i3-msg 'rename workspace 1 to $ws1'
 exec i3-msg 'rename workspace 2 to $ws2'
 exec i3-msg 'rename workspace 3 to $ws3'
+exec i3-msg 'rename workspace 4 to $ws4'
 
 ######################
 # WORKSPACE BINDINGS #
@@ -18,7 +20,7 @@ exec i3-msg 'rename workspace 3 to $ws3'
 bindsym $mod+ampersand   workspace $ws1
 bindsym $mod+eacute      workspace $ws2
 bindsym $mod+quotedbl    workspace $ws3
-bindsym $mod+apostrophe  workspace 4
+bindsym $mod+apostrophe  workspace $ws4
 bindsym $mod+parenleft   workspace 5
 bindsym $mod+minus       workspace 6
 bindsym $mod+egrave      workspace 7
@@ -30,7 +32,7 @@ bindsym $mod+agrave      workspace 10
 bindsym $mod+Shift+ampersand   move container to workspace $ws1
 bindsym $mod+Shift+eacute      move container to workspace $ws2
 bindsym $mod+Shift+quotedbl    move container to workspace $ws3
-bindsym $mod+Shift+apostrophe  move container to workspace number 4
+bindsym $mod+Shift+apostrophe  move container to workspace number $ws4
 bindsym $mod+Shift+5           move container to workspace number 5
 bindsym $mod+Shift+minus       move container to workspace number 6
 bindsym $mod+Shift+egrave      move container to workspace number 7
@@ -38,4 +40,16 @@ bindsym $mod+Shift+underscore  move container to workspace number 8
 bindsym $mod+Shift+ccedilla    move container to workspace number 9
 bindsym $mod+Shift+agrave      move container to workspace number 10
 
+
+###########################
+# WORKSPACE CUSTOMIZATION #
+###########################
+
+assign [class="^chromium$"] → $ws2
+assign [class="^Slack$"] → $ws3
+assign [class="^jetbrains$"] → $ws4
+assign [class="^Ĉode$"] → $ws4
+
+for_window [workspace=$ws2] layout tabbed
+for_window [workspace=$ws4] layout tabbed
 # vim:filetype=i3
