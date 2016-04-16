@@ -5,6 +5,7 @@ general {
 }
 
 order += "arch_updates"
+order += "external_script vpns"
 order += "sysdata cpu"
 order += "sysdata mem"
 order += "volume_status"
@@ -15,6 +16,12 @@ arch_updates {
 	cache_timeout = 300
 	include_aur   = 1
 	format        = "PKGS: {pacman}/{aur}"
+}
+
+external_script vpns {
+	cache_timeout = 2
+	script_path   = $HOME/.scripts/active-vpns
+	format        = "VPN: {output}"
 }
 
 sysdata cpu {

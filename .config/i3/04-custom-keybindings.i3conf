@@ -7,7 +7,7 @@ set $screenshots $HOME/Pictures/screenshots
 set $datepattern %d-%m-%Y_%H-%M-%S
 
 bindsym $mod+p                exec $i3locker
-bindsym $mod+Shift+s          exec auto_monitor
+bindsym $mod+Shift+s          exec $HOME/.scripts/auto_monitor
 
 bindsym Print                 exec --no-startup-id scrot       $screenshots/full-$datepattern.png
 bindsym --release $mod+Print  exec --no-startup-id scrot -s    $screenshots/selection-$datepattern.png

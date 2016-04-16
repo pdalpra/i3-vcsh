@@ -1,6 +1,4 @@
 exec --no-startup-id auto_monitor
-exec sleep 5
-exec --no-startup-id i3-msg 'restart'
 
 exec --no-startup-id nitrogen --restore
 exec --no-startup-id nm-applet
