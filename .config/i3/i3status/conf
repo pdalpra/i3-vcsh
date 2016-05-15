@@ -41,6 +41,7 @@ battery_level {
 	format         = "BAT: {icon} {time_remaining}"
 	hide_when_full = true
 	hide_seconds   = true
+	cache_timeout  = 10
 }
 
 time {
