@@ -47,7 +47,7 @@ bindsym $mod+Shift+agrave      move container to workspace number 10
 
 assign [class="^chromium$"] → $ws2
 assign [class="^Slack$"] → $ws3
-assign [class="^jetbrains$"] → $ws4
+assign [class="^jetbrains-idea$"] → $ws4
 assign [class="^Ĉode$"] → $ws4
 
 for_window [workspace=$ws2] layout tabbed
