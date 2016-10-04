@@ -9,9 +9,9 @@ set $datepattern %d-%m-%Y_%H-%M-%S
 bindsym $mod+p                exec $i3locker
 bindsym $mod+Shift+s          exec $HOME/.scripts/auto_monitor
 
-bindsym Print                 exec --no-startup-id scrot       $screenshots/full-$datepattern.png
-bindsym --release $mod+Print  exec --no-startup-id scrot -s    $screenshots/selection-$datepattern.png
-bindsym $mod+Shift+Print      exec --no-startup-id scrot -u -b $screenshots/window-$datepattern.png
+bindsym Print                 exec --no-startup-id mkdir -p $screenshots && scrot       $screenshots/full-$datepattern.png
+bindsym --release $mod+Print  exec --no-startup-id mkdir -p $screenshots && scrot -s    $screenshots/selection-$datepattern.png
+bindsym $mod+Shift+Print      exec --no-startup-id mkdir -p $screenshots && scrot -u -b $screenshots/window-$datepattern.png
 
 bindsym XF86MonBrightnessUp   exec --no-startup-id xbacklight -inc 5
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5
