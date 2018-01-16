@@ -1,0 +1,166 @@
+########################
+# General configration #
+########################
+
+set $mod Mod4
+
+font pango:Fira Mono for Powerline 11
+
+floating_modifier $mod
+
+bindsym $mod+Return exec termite
+bindsym $mod+Shift+q kill
+bindsym $mod+d exec rofi -show drun
+bindsym $mod+w exec rofi -show window
+
+# change focus
+bindsym $mod+Left  focus left
+bindsym $mod+Down  focus down
+bindsym $mod+Up    focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+Left  move left
+bindsym $mod+Shift+Down  move down
+bindsym $mod+Shift+Up    move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $mod+h split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+z layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+#bindsym $mod+q focus parent
+
+# focus the child container
+#bindsym $mod+d focus child
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+bindsym $mod+r mode "resize"
+
+mode "resize" {
+  # These bindings trigger as soon as you enter the resize mode
+
+  # Pressing left will shrink the window’s width.
+  # Pressing right will grow the window’s width.
+  # Pressing up will shrink the window’s height.
+  # Pressing down will grow the window’s height.
+  bindsym Left resize shrink width 10 px or 10 ppt
+  bindsym Down resize grow height 10 px or 10 ppt
+  bindsym Up resize shrink height 10 px or 10 ppt
+  bindsym Right resize grow width 10 px or 10 ppt
+  
+	# back to normal: Enter or Escape
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+}
+
+##############
+# Workspaces #
+##############
+
+set $ws1 "1: &#xf120;"
+set $ws2 "2: &#xf269;"
+set $ws3 "3: &#xf198;"
+set $ws4 "4: &#xf121;"
+
+exec i3-msg 'rename workspace 1 to $ws1'
+exec i3-msg 'rename workspace 2 to $ws2'
+exec i3-msg 'rename workspace 3 to $ws3'
+exec i3-msg 'rename workspace 4 to $ws4'
+
+# switch to workspace
+bindsym $mod+ampersand   workspace $ws1
+bindsym $mod+eacute      workspace $ws2
+bindsym $mod+quotedbl    workspace $ws3
+bindsym $mod+apostrophe  workspace $ws4
+bindsym $mod+parenleft   workspace 5
+bindsym $mod+minus       workspace 6
+bindsym $mod+egrave      workspace 7
+bindsym $mod+underscore  workspace 8
+bindsym $mod+ccedilla    workspace 9
+bindsym $mod+agrave      workspace 10
+
+# move focused container to workspace
+bindsym $mod+Shift+ampersand   move container to workspace $ws1
+bindsym $mod+Shift+eacute      move container to workspace $ws2
+bindsym $mod+Shift+quotedbl    move container to workspace $ws3
+bindsym $mod+Shift+apostrophe  move container to workspace number $ws4
+bindsym $mod+Shift+5           move container to workspace number 5
+bindsym $mod+Shift+minus       move container to workspace number 6
+bindsym $mod+Shift+egrave      move container to workspace number 7
+bindsym $mod+Shift+underscore  move container to workspace number 8
+bindsym $mod+Shift+ccedilla    move container to workspace number 9
+bindsym $mod+Shift+agrave      move container to workspace number 10
+
+# Default apps assignments to workspaces
+assign [class="^chromium$"]       $ws2
+assign [class="^Firefox$"]        $ws2
+assign [class="^Slack$"]          $ws3
+assign [class="^jetbrains-idea$"] $ws4
+assign [class="^Ĉode$"]           $ws4
+
+for_window [workspace=$ws2] layout tabbed
+for_window [workspace=$ws4] layout tabbed
+
+######################
+# Custom keybindings #
+######################
+
+set $i3locker    $HOME/.bin/i3lock-fancy-multimonitor/lock
+set $screenshots $HOME/Pictures/screenshots
+set $datepattern %d-%m-%Y_%H-%M-%S
+
+bindsym $mod+p                exec $i3locker
+bindsym $mod+Shift+s          exec $HOME/.scripts/auto_monitor
+
+bindsym Print                 exec --no-startup-id mkdir -p $screenshots && scrot       $screenshots/full-$datepattern.png
+bindsym --release $mod+Print  exec --no-startup-id mkdir -p $screenshots && scrot -s    $screenshots/selection-$datepattern.png
+bindsym $mod+Shift+Print      exec --no-startup-id mkdir -p $screenshots && scrot -u -b $screenshots/window-$datepattern.png
+
+bindsym XF86MonBrightnessUp   exec --no-startup-id xbacklight -inc 5
+bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5
+bindsym XF86AudioRaiseVolume  exec --no-startup-id pulseaudio-ctl up && killall -SIGUSR1 py3status
+bindsym XF86AudioLowerVolume  exec --no-startup-id pulseaudio-ctl down && killall -SIGUSR1 py3status
+bindsym XF86AudioMute         exec --no-startup-id pulseaudio-ctl mute && killall -SIGUSR1 py3status
+
+####################
+# Autostarted apps #
+####################
+
+exec --no-startup-id nitrogen --restore
+exec --no-startup-id nm-applet
+
+exec --no-startup-id pulseaudio --start
+
+#######################
+# i3bar configuration #
+#######################
+
+bar {
+  font pango:Awesome 12
+  status_command py3status -c .config/i3/i3status_conf
+}
+

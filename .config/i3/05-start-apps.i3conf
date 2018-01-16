@@ -1,6 +1,0 @@
-exec --no-startup-id nitrogen --restore
-exec --no-startup-id nm-applet
-
-exec --no-startup-id pulseaudio --start
-
-# vim:filetype=i3
