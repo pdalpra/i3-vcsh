@@ -7,3 +7,7 @@
 !/.config/i3
 !/.config/i3/config
 !/.config/i3/i3status_conf
+!/.config/termite
+!/.config/termite/config
+!/.config/dunst
+!/.config/dunst/dunstrc
