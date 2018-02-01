@@ -116,11 +116,11 @@ bindsym $mod+Shift+ccedilla    move container to workspace number 9
 bindsym $mod+Shift+agrave      move container to workspace number 10
 
 # Default apps assignments to workspaces
-assign [class="^chromium$"]       $ws2
-assign [class="^Firefox$"]        $ws2
-assign [class="^Slack$"]          $ws3
-assign [class="^jetbrains-idea$"] $ws4
-assign [class="^Ĉode$"]           $ws4
+assign [class="^Chromium-browser$"] $ws2
+assign [class="^Firefox$"]          $ws2
+assign [class="^Slack$"]            $ws3
+assign [class="^jetbrains-idea$"]   $ws4
+assign [class="^Ĉode$"]             $ws4
 
 for_window [workspace=$ws2] layout tabbed
 for_window [workspace=$ws4] layout tabbed
